@@ -1,30 +1,36 @@
-from flask import Blueprint, request, jsonify, redirect, url_for, render_template
-from firebase_admin import auth as firebase_auth
+from flask import render_template, request, redirect, url_for, flash, Blueprint
 
 auth_bp = Blueprint('auth', __name__)
+from firebase_admin import auth
 
-# Dummy user data (replace with database in production)
-USERS = {
-    "user@example.com": "password123"
-}
-
-@auth_bp.route('/login', methods=['POST'])
+@auth_bp.route('/login', methods=['GET', 'POST'])
 def login():
-    data = request.form
-    email = data.get('email')
-    password = data.get('password')
+    if request.method == 'POST':
+        email = request.form.get('email')
+        password = request.form.get('password')
+        # Logic for Firebase authentication login
+        try:
+            # Placeholder for Firebase login verification
+            flash("Login successful", "success")
+            return redirect(url_for('auth.welcome'))
+        except Exception as e:
+            flash(f"Error: {str(e)}", "error")
+    return render_template('login.html')
 
-    # Check user credentials
-    if email in USERS and USERS[email] == password:
-        return render_template('welcome.html', email=email)
-    else:
-        return render_template('index.html', error="Invalid email or password"), 401
+@auth_bp.route('/signup', methods=['GET', 'POST'])
+def signup():
+    if request.method == 'POST':
+        email = request.form.get('email')
+        password = request.form.get('password')
+        # Logic for Firebase user creation
+        try:
+            auth.create_user(email=email, password=password)
+            flash("Signup successful", "success")
+            return redirect(url_for('auth.login'))
+        except Exception as e:
+            flash(f"Error: {str(e)}", "error")
+    return render_template('signup.html')
 
-@auth_bp.route('/google-login', methods=['GET'])
-def google_login():
-    # Logic to integrate Google OAuth2
-    return jsonify({"message": "Google login coming soon!"})
 @auth_bp.route('/welcome', methods=['GET'])
 def welcome():
-    """Serve the welcome page after login/signup."""
-    return render_template('welcome.html', message="Welcome to the app!")
+    return render_template('welcome.html')
