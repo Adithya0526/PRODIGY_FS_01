@@ -2,8 +2,7 @@ import os
 
 class Config:
     """Base configuration."""
-    SERVICE_ACCOUNT_KEY_PATH = r"D:\Security Private Key\user---authentication-firebase-adminsdk-lnm0c-e616be44f5.json"
-
+    SERVICE_ACCOUNT_KEY_PATH = r"D:\Security Private Key\fs-task-1-firebase-adminsdk-og1lj-702a6c0b14.json"
 
 
 class DevelopmentConfig(Config):

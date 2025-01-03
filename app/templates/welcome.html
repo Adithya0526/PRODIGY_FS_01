@@ -4,31 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 0;
-            padding: 20px;
-            background-color: #f4f4f4;
-        }
-        h1 {
-            color: #007bff;
-        }
-        a {
-            text-decoration: none;
-            color: #007bff;
-        }
-    </style>
+    <link rel="stylesheet" href="/static/styles.css">
 </head>
 <body>
-    <h1>Welcome to PRODIGY_FS_01!</h1>
-    <p>Welcome, <span id="user-email"></span>!</p>
-    <p>Enjoy exploring our services.</p>
-    <a href="/">Logout</a>
-    <script>
-        // Replace this with actual user email after integration
-        document.getElementById("user-email").textContent = "User";
-    </script>
+    <div class="container">
+        <h1>{{ message }}</h1>
+        <p>You have successfully logged in or signed up.</p>
+        <a href="/auth/login">Log Out</a>
+    </div>
 </body>
 </html>

@@ -24,3 +24,7 @@ def login():
 def google_login():
     # Logic to integrate Google OAuth2
     return jsonify({"message": "Google login coming soon!"})
+@auth_bp.route('/welcome', methods=['GET'])
+def welcome():
+    """Serve the welcome page after login/signup."""
+    return render_template('welcome.html', message="Welcome to the app!")
