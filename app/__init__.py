@@ -12,7 +12,7 @@ def create_app():
     # Serve the index.html file for the root URL
     @app.route('/')
     def index():
-        return render_template('index.html')
+        return render_template('login.html')
 
     # Register the auth blueprint
     app.register_blueprint(auth_bp, url_prefix='/auth')
