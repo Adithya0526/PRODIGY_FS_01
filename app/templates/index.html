@@ -3,47 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to PRODIGY_FS_01</title>
+    <title>Login - PRODIGY_FS_01</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-            margin: 0;
-            padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            color: #333;
+            margin: 0;
+            background-color: #f4f4f4;
         }
-        .container {
-            text-align: center;
+        .login-container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
         }
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
+        .login-container h2 {
+            margin: 0 0 20px;
         }
-        p {
-            font-size: 1.2rem;
+        .form-group {
+            margin-bottom: 15px;
         }
-        a {
-            color: #007bff;
-            text-decoration: none;
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
         }
-        a:hover {
-            text-decoration: underline;
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .form-group button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .form-group button:hover {
+            background-color: #0056b3;
+        }
+        .google-button {
+            background-color: #db4437;
+        }
+        .google-button:hover {
+            background-color: #c33d2d;
+        }
+        .error {
+            color: red;
+            font-size: 0.9em;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Welcome to PRODIGY_FS_01</h1>
-        <p>The Flask server is running successfully!</p>
-        <p>Use the following endpoints to interact:</p>
-        <ul>
-            <li><a href="/auth/health-check" target="_blank">/auth/health-check</a> - Health check</li>
-            <li><a href="https://firebase.google.com" target="_blank">Verify Token API (Use Postman or curl)</a></li>
-        </ul>
+    <div class="login-container">
+        <h2>Login</h2>
+        <form id="loginForm" method="POST" action="/auth/login">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" pattern=".{8,}" title="Password must be at least 8 characters long" required>
+            </div>
+            <div class="form-group">
+                <button type="submit">Login</button>
+            </div>
+        </form>
+        <hr>
+        <form action="/auth/google-login" method="GET">
+            <button type="submit" class="form-group google-button">Continue with Google</button>
+        </form>
     </div>
 </body>
 </html>
