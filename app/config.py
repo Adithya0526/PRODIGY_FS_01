@@ -2,12 +2,8 @@ import os
 
 class Config:
     """Base configuration."""
-    SECRET_KEY = os.environ.get('SECRET_KEY', 'default-secret-key')
-    SERVICE_ACCOUNT_KEY_PATH = os.environ.get(
-        'SERVICE_ACCOUNT_KEY_PATH', 
-        'instance/serviceAccountKey.json'
-    )
-    DEBUG = False
+    SERVICE_ACCOUNT_KEY_PATH = r"D:\Security Private Key\user---authentication-firebase-adminsdk-lnm0c-e616be44f5.json"
+
 
 
 class DevelopmentConfig(Config):
