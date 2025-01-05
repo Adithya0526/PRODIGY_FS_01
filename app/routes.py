@@ -41,8 +41,13 @@ def login():
             next_page = request.args.get('next')
             return redirect(next_page) if next_page else redirect(url_for('main.dashboard'))
         else:
-            flash('Login Unsuccessful. Please check email and password', 'danger')
+            flash('Login Unsuccessful. Please check email and password.', 'danger')
+            # Redirect the user to the registration page if they don't exist
+            if not user:
+                flash('No account found with this email. Please sign up.', 'info')
+                return redirect(url_for('main.register'))
     return render_template('login.html', title='Login', form=form)
+
 
 @main.route('/logout')
 def logout():
