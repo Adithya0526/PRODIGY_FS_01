@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Flask App{% endblock %}</title>
+    <title>{% block title %}Home{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
@@ -25,6 +25,9 @@
                 {% endfor %}
             {% endif %}
         {% endwith %}
+        <div style="text-align: center; padding: 20px; background-color: white; border-radius: 5px;">
+            Welcome To Prodigy FS Task 01
+        </div>
         {% block content %}{% endblock %}
     </div>
 </body>
