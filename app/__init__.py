@@ -16,7 +16,7 @@ def create_app():
     login_manager.init_app(app)
 
     with app.app_context():
-        from . import routes
+        from app.routes import main
         #from . import models
         db.create_all()
     

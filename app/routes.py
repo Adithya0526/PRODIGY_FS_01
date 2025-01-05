@@ -1,16 +1,16 @@
-from flask import render_template, url_for, flash, redirect,request
+from flask import render_template, url_for, flash, redirect, request, Blueprint
 from flask_login import login_user, current_user, logout_user, login_required
 from app import app, db, bcrypt
 from app.models import User, Post
 from app.forms import RegistrationForm, LoginForm
 from app.utils import validate_password
-
-@app.route('/')
-@app.route('/home')
+main = Blueprint('main', __name__)
+@main.route('/')
+@main.route('/home')
 def home():
     return render_template('base.html', title='Home')
 
-@app.route('/register', methods=['GET', 'POST'])
+@main.route('/register', methods=['GET', 'POST'])
 def register():
     if current_user.is_authenticated:
         return redirect(url_for('home'))
@@ -27,7 +27,7 @@ def register():
         return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
 
-@app.route('/login', methods=['GET', 'POST'])
+@main.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
         return redirect(url_for('home'))
@@ -42,12 +42,12 @@ def login():
             flash('Login Unsuccessful. Please check email and password', 'danger')
     return render_template('login.html', title='Login', form=form)
 
-@app.route('/logout')
+@main.route('/logout')
 def logout():
     logout_user()
     return redirect(url_for('home'))
 
-@app.route('/dashboard')
+@main.route('/dashboard')
 @login_required
 def dashboard():
     return render_template('dashboard.html', title='Dashboard')
